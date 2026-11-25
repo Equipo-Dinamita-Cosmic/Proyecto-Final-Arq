@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reporte web · CPU monociclo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<div class="tag">// REPORTE WEB · ARQUITECTURA DE COMPUTADORAS · EQUIPO DINAMITA</div>
+<h1>Proyecto Final - CPU monociclo tipo MIPS</h1>
+<p class="mut">Diseño, módulos, controles y organización de memorias.</p>
+</header>
+<nav><a href="#integrantes">Integrantes</a><a href="#objetivo">Objetivo</a><a href="#diagrama">Diagrama</a><a href="#modulos">Módulos y controles</a><a href="#memorias">Memorias</a><a href="#conclusiones">Conclusiones</a><a href="#referencias">Referencias</a></nav>
+
+<section id="integrantes"><h2>Integrantes</h2>
+<div class="grid">
+<div class="card"><b>Miguel Gabriel Bibiano Mendoza</b><div class="mut">Equipo Dinamita</div></div>
+<div class="card"><b>Fernando Godinez Cisneros</b><div class="mut">Equipo Dinamita</div></div>
+<div class="card"><b>Ivan Torres Navarro</b><div class="mut">Equipo Dinamita</div></div>
+</div></section>
+
+<section id="objetivo"><h2>Objetivo</h2>
+<p class="card">Implementar o integrar el datapath monociclo MIPS de 32 bits trabajado en clase y demostrar, mediante simulación, la ejecución correcta de las 13 instrucciones obligatorias (add, sub, slt, or, and, addi, slti, andi, ori, sw, lw, beq y j). La simulación debe mostrar el recorrido de los datos y las señales de control de cada instrucción. Todo ello se documenta en una página web que sirve como reporte técnico.</p></section>
+
+<section id="diagrama"><h2>Diagrama del circuito</h2>
+<p class="mut">Haz clic en cualquier módulo para ver el código que contiene.</p>
+<div class="diag">
+<svg viewBox="0 0 945 640" role="img" aria-label="Diagrama del CPU monociclo">
+
+<!-- ===== CABLES DE DATOS ===== -->
+<g class="w">
+<path d="M28 470H58"/>
+<path d="M103 392H140"/><path d="M113 392V290H110"/><path d="M92 240H110"/>
+<path d="M170 268H430"/>
+<path d="M430 268V100"/><path d="M362 100H430"/>
+<path d="M430 100V36H858"/>
+<path d="M430 100H725"/>
+<path d="M700 100V90H821"/>
+<path d="M790 120H800V125H821"/>
+<path d="M855 110H865V82H850V60H858"/>
+<path d="M892 48H915V12H12V300H80V375"/>
+<path d="M248 382H272"/><path d="M272 100V595"/>
+<path d="M272 100H318"/><path d="M272 172H610"/>
+<path d="M272 382H438"/><path d="M272 413H438"/>
+<path d="M320 413V455H350"/><path d="M272 485H350"/>
+<path d="M386 470H412V453H438"/>
+<path d="M272 540H393"/>
+<path d="M272 595H600V578H623"/>
+<path d="M437 540H552V140"/>
+<path d="M592 140H725"/>
+<path d="M552 455H566"/>
+<path d="M535 380H608"/><path d="M535 423H566"/>
+<path d="M600 432H619"/>
+<path d="M543 423V525H745V462H765"/>
+<path d="M690 400H722V165H798"/>
+<path d="M690 445H710V368H765"/><path d="M710 445V495H901"/>
+<path d="M868 455H880V458H901"/>
+<path d="M935 470H940V625H487V500"/>
+<path d="M647 558V492"/>
+<path d="M820 170H838V140"/>
+</g>
+
+<!-- ===== CABLES DE CONTROL ===== -->
+<g class="c">
+<path d="M612 190H487V342"/>
+<path d="M635 212V225H368V435"/>
+<path d="M655 214V250H583V399"/>
+<path d="M685 213V222H700V578H671"/>
+<path d="M706 193H918V435"/>
+<path d="M700 201H785V340"/>
+<path d="M690 209H805V340"/>
+<path d="M708 185H875V73"/>
+<path d="M705 175H798"/>
+</g>
+
+<!-- ===== NODOS ===== -->
+<g class="d">
+<circle cx="113" cy="392" r="3"/><circle cx="272" cy="382" r="3"/><circle cx="272" cy="100" r="3"/><circle cx="272" cy="172" r="3"/>
+<circle cx="272" cy="413" r="3"/><circle cx="272" cy="485" r="3"/><circle cx="272" cy="540" r="3"/><circle cx="272" cy="595" r="3"/>
+<circle cx="320" cy="413" r="3"/><circle cx="430" cy="268" r="3"/><circle cx="430" cy="100" r="3"/><circle cx="700" cy="100" r="3"/>
+<circle cx="543" cy="423" r="3"/><circle cx="552" cy="455" r="3"/><circle cx="710" cy="445" r="3"/>
+</g>
+
+<!-- ===== ETIQUETAS ===== -->
+<g>
+<text class="l" x="4" y="464">CLK</text><text class="l" x="82" y="244">4</text>
+<text class="l" x="280" y="94">[25:0]</text><text class="l" x="280" y="166">[31:26] op</text>
+<text class="l" x="330" y="376">[25:21] AR1</text><text class="l" x="330" y="407">[20:16] AR2</text>
+<text class="l" x="280" y="479">[15:11]</text><text class="l" x="280" y="534">[15:0] Inmediate</text>
+<text class="l" x="280" y="589">[5:0] funct</text><text class="l" x="410" y="450">AW</text>
+<text class="l" x="540" y="374">DR1</text><text class="l" x="540" y="417">DR2</text>
+<text class="l" x="492" y="515">DW</text><text class="l" x="715" y="362">Address_In</text>
+<text class="l" x="715" y="456">Data_In</text><text class="l" x="698" y="394">zf</text>
+<text class="lc" x="490" y="186">en_BR</text><text class="lc" x="372" y="220">RegDst</text>
+<text class="lc" x="590" y="246">ALU_Src</text><text class="lc" x="704" y="570">ALU Op</text>
+<text class="lc" x="808" y="188">Jump</text><text class="lc" x="830" y="205">MemToReg</text>
+<text class="lc" x="722" y="333">MemRead</text><text class="lc" x="808" y="333">MemWrite</text>
+<text class="lc" x="740" y="172">Branch</text>
+<text class="l" x="650" y="548">3</text>
+</g>
+
+<!-- ===== MÓDULOS (clic) ===== -->
+<g class="m" tabindex="0" data-m="pc"><rect x="58" y="375" width="45" height="105" rx="4"/><text x="80" y="432">PC</text></g>
+<g class="m" tabindex="0" data-m="add4"><polygon points="110,228 170,248 170,288 110,308 110,272 124,268 110,264"/><text x="146" y="272">+</text></g>
+<g class="m" tabindex="0" data-m="imem"><rect x="140" y="348" width="108" height="130" rx="4"/><text x="194" y="410">Memoria de</text><text x="194" y="426">Instrucciones</text></g>
+<g class="m" tabindex="0" data-m="shj"><ellipse cx="340" cy="100" rx="22" ry="14"/><text class="s" x="340" y="103">Shift Left</text></g>
+<g class="m" tabindex="0" data-m="shb"><ellipse cx="570" cy="140" rx="22" ry="12"/><text class="s" x="570" y="143">Shift Left</text></g>
+<g class="m" tabindex="0" data-m="ctrl"><ellipse cx="660" cy="185" rx="50" ry="30"/><text x="660" y="182">Unidad de</text><text x="660" y="196">Control</text></g>
+<g class="m" tabindex="0" data-m="regs"><rect x="438" y="342" width="97" height="158" rx="4"/><text x="487" y="416">Banco de</text><text x="487" y="432">Registros</text></g>
+<g class="m" tabindex="0" data-m="mux2"><ellipse cx="368" cy="470" rx="18" ry="35"/><text class="s" x="368" y="473">Mux2</text></g>
+<g class="m" tabindex="0" data-m="sext"><ellipse cx="415" cy="540" rx="22" ry="16"/><text class="s" x="415" y="543">Sign Ext</text></g>
+<g class="m" tabindex="0" data-m="mux3"><ellipse cx="583" cy="432" rx="17" ry="33"/><text class="s" x="583" y="435">Mux3</text></g>
+<g class="m" tabindex="0" data-m="alu"><polygon points="608,348 690,385 690,465 608,502 608,445 626,425 608,405"/><text x="658" y="430">ALU</text></g>
+<g class="m" tabindex="0" data-m="aluc"><ellipse cx="647" cy="578" rx="24" ry="20"/><text class="s" x="647" y="576">ALU</text><text class="s" x="647" y="587">Control</text></g>
+<g class="m" tabindex="0" data-m="dmem"><rect x="765" y="340" width="103" height="160" rx="4"/><text x="816" y="414">Memoria</text><text x="816" y="430">de Datos</text></g>
+<g class="m" tabindex="0" data-m="mux1"><ellipse cx="918" cy="470" rx="17" ry="35"/><text class="s" x="918" y="473">Mux1</text></g>
+<g class="m" tabindex="0" data-m="addb"><polygon points="725,85 790,105 790,135 725,155 725,125 737,120 725,115"/><text x="763" y="124">+</text></g>
+<g class="m" tabindex="0" data-m="mux4"><ellipse cx="838" cy="110" rx="17" ry="30"/><text class="s" x="838" y="113">Mux4</text></g>
+<g class="m" tabindex="0" data-m="mux5"><ellipse cx="875" cy="48" rx="17" ry="25"/><text class="s" x="875" y="51">Mux5</text></g>
+<path d="M798 160H810A10 10 0 0 1 810 180H798Z" fill="#0b3a2a" stroke="#34d399" stroke-width="1.6"/>
+</svg></div>
+<p class="lg">Líneas verdes: datos y direcciones. Líneas amarillas: señales de control.</p>
+
+<h3 class="mono" style="color:var(--ctl)">Formatos de instrucción</h3>
+<div class="mut">Tipo R</div><div class="fmt"><span><i>31:26</i>op (6)</span><span><i>25:21</i>rs (5)</span><span><i>20:16</i>rt (5)</span><span><i>15:11</i>rd (5)</span><span><i>10:6</i>shamt (5)</span><span><i>5:0</i>funct (6)</span></div>
+<div class="mut">Tipo I</div><div class="fmt"><span><i>31:26</i>op (6)</span><span><i>25:21</i>rs (5)</span><span><i>20:16</i>rt (5)</span><span><i>15:0</i>address / inmediate (16)</span></div>
+<div class="mut">Tipo J</div><div class="fmt"><span><i>31:26</i>op (6)</span><span><i>25:0</i>index (26)</span></div>
+</section>
+
+<section id="modulos"><h2>Módulos y controles</h2>
+<div class="grid" id="mods"></div>
+<h3 class="mono" style="color:var(--ctl)">Señales de control</h3>
+<div class="wrap"><table><thead><tr><th>Señal</th><th>Función</th></tr></thead><tbody id="sig"></tbody></table></div>
+</section>
+
+<section id="memorias"><h2>Organización de memorias</h2>
+<div class="grid">
+<div class="card"><b>Memoria de instrucciones</b><p class="mut">[Placeholder] Tamaño, ancho de palabra, direccionamiento y modo de carga del programa.</p></div>
+<div class="card"><b>Memoria de datos</b><p class="mut">[Placeholder] Tamaño, direccionamiento, lectura y escritura (MemRead / MemWrite).</p></div>
+<div class="card"><b>Banco de registros</b><p class="mut">[Placeholder] Número de registros, ancho y puertos de lectura/escritura.</p></div>
+</div></section>
+
+<section id="conclusiones"><h2>Conclusiones individuales</h2>
+<div class="grid">
+<div class="card"><b>Miguel Gabriel Bibiano Mendoza</b><p class="mut">[Placeholder] Conclusión pendiente.</p></div>
+<div class="card"><b>Fernando Godinez Cisneros</b><p class="mut">[Placeholder] Conclusión pendiente.</p></div>
+<div class="card"><b>Ivan Torres Navarro</b><p class="mut">[Placeholder] Conclusión pendiente.</p></div>
+</div></section>
+
+<section id="referencias"><h2>Referencias</h2>
+<p class="card mut">Patterson, D. A., & Hennessy, J. L. (2020). Computer organization and design MIPS edition: The hardware/software interface (6.ª ed.). Morgan Kaufmann.<br>Hennessy, J. L., & Patterson, D. A. (2017). Computer architecture: A quantitative approach (6.ª ed.). Morgan Kaufmann.<br><br>[Placeholder] Agregar aquí las referencias bibliográficas y fuentes consultadas una vez terminemos.</p></section>
+
+<footer>Miguel Bibiano · Fernando Godinez · Ivan Torres</footer>
+
+<div id="ov"><div id="box" role="dialog" aria-modal="true"><button id="x">Cerrar ✕</button><h3 id="t"></h3><p class="mut" id="d"></p><pre id="k"></pre></div></div>
+
+<script src="script.js"></script>
+</body>
+</html>
